@@ -1,0 +1,26 @@
+.footer{
+    display: flex;
+    flex-flow: column;
+    font-size:12px;
+    text-align: center;
+    color: #a2a2a2;
+    width:100%;
+}
+.footer .f-menu{
+    /* display: flex; */
+    /* align-items: center; */
+    /* justify-content: center; */
+    padding:10px 0 0 0;
+    text-align:  center;
+}
+.footer .f-menu li{
+    padding:0 7px;
+    /* float: left; */
+    display:  inline-block;
+}
+.footer .f-menu li a{
+    color: #a2a2a2;
+}
+.kx-footer{
+    margin-top:50px;
+}

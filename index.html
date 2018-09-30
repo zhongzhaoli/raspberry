@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>首页</title>
+    <!-- 因为app.js设置了静态目录static 所以路径不是./static/js/xxx.js -->
+    <script src = "./js/jquery.min.js"></script>
+    <script src = "./js/socket.io.js"></script>
+    <script src = "./js/index.js"></script>
+    <script src="./js/fun.js"></script>
+    <script src = "./js/vue.js"></script>
+    <script src="./js/video.min.js"></script>
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/kx-index.css">
+    <link rel="stylesheet" href="./css/kx-nav.css">
+    <link rel="stylesheet" href="./css/kx-footer.css">
+    <link href="http://vjs.zencdn.net/5.19/video-js.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="kx-nav">
+        <div class="kx-nav-left">
+            <a class="kx-nav-logo" href="#">
+                <span class="icon-boNiLQhu6"></span>
+            </a>
+            <p class="kx-nav-title">流媒体直播</p>
+        </div>
+        <div class="kx-nav-right">
+            <div class="kx-nav-user">
+                <div class="kx-user-img-div">
+                    <img src="./images/user.jpg" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="kx-main row">
+        <div class="kx-main-video">
+            <div class="kx-video-message">
+                <div class="kx-video-message-left">
+                    <div class="kx-message-img-div">
+                        <img src="./images/user.jpg" alt="">
+                    </div>
+                    <div class="kx-message-text">
+                        <div class="kx-message-title">青铜修炼手册</div>
+                        <div>主讲老师：钟兆立</div>
+                        <div id="user_list_num">在线人数：{{ length }}</div>
+                    </div>
+                </div>
+                <div class="kx-video-message-right"></div>
+            </div>
+            <div class="kx-video">
+                <div class="barrage_box">
+
+                </div>
+                <div class="kx-video-div">
+                    <video v-show="flash" id="streamContainer" class="video-js vjs-default-skin" controls autoplay="autoplay" style="width:100%;" preload="auto" data-setup='{ "techorder" : ["flash", "html5"] }'>
+                        <source src="rtmp://10.1.53.163/live/zzl" type='rtmp/mp4'>
+                    </video>
+                </div>
+            </div>
+        </div>
+        <div class="kx-main-interaction">
+            <div class="kx-interaction-type-list">
+                <div class="active" data-type="1">弹幕区</div>
+                <div data-type="2">功能区</div>
+                <div data-type="3">在线列表</div>
+            </div>
+            <div class="kx-interaction-type-div type1">
+                <div class="kx-barrage-div" id="barrage_show_div">
+                    <div class="kx-warning">
+                        请同学们注意言辞
+                    </div>
+                    <div v-for="j in barrage" class="kx-user-barrage">
+                        <span style="color:red;">{{ j.user }}</span> : {{ j.msg }}
+                    </div>
+                </div>
+                <div class="kx-barrage-send-div">
+                    <input type="text" placeholder="输入弹幕" id="text" maxlength="20">
+                    <button  onclick="send_barrage()">发送</button>
+                </div>
+            </div>
+            <div class="kx-interaction-type-div type2 kx-dis-none"></div>
+            <div class="kx-interaction-type-div type3 kx-dis-none">
+                <div id="user_list">
+                    <div class="alert alert-primary kx-alert" role="alert" v-for="i in user_list">
+                    {{ i }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <nav class="navbar navbar-default navbar-fixed-bottom kx-footer">
+        <div class="container">
+            <div class="footer">© 2018 15913.com
+                <ul class="f-menu">
+                    <li><a href="#">首页</a></li>
+                    <li><a href="#">隐私权</a></li>
+                    <li><a href="#">服务条款</a></li>
+                    <li><a href="#">发送反馈</a></li>
+                    <li><a href="#">常见问题</a></li>
+                    <li><a href="#">帮助</a></li>
+                    <li><a href="#">联系我们</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</body>
+</html>
