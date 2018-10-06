@@ -52,6 +52,7 @@ body,html{
     top:0;
     left:0;
     z-index: 1;
+    overflow: hidden;
 }
 .send_div{
     display: flex;
@@ -83,9 +84,6 @@ body,html{
     word-wrap: break-word;
     word-break: break-all;
 }
-.barrage_box{
-    overflow: hidden;
-}
 .kx-main{
     width:90%;
     margin:auto;
@@ -113,7 +111,6 @@ body,html{
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 3px;
-
 }
 .kx-video-message-left{
     display: flex;
@@ -252,6 +249,71 @@ body,html{
         width:72%;
     }
     .kx-main-interaction{
-        width:calc(100% - 72% - 20px)
+        width:calc(100% - 72% - 20px);
+        height:auto;
+    }
+    .kx-message-img-div{
+        width:100px;
+        height:100px;
+    }
+}
+@media screen and (max-width:1000px) {
+    .kx-message-img-div{
+        width:80px;
+        height:80px;
+    }
+}
+@media screen and (max-width:800px) {
+    .kx-main{
+        width:100%;
+        margin:0;
+    }
+    .kx-main-video{
+        width:100%;
+    }
+    .kx-video-message{
+        display: none;
+    }
+    .kx-video{
+        margin-top:0;
+    }
+    .kx-main-interaction{
+        width:100%;
+        margin:0;
+    }
+    .navbar{
+        display: none;
+    }
+    body, html{
+        height:100%;
+    }
+    .kx-barrage-div{
+        height:100%;
+    }
+    .kx-main-interaction{
+        border-bottom:0;
+    }
+    .kx-interaction-type-list > div{
+        height:40px;
+    }
+    .kx-interaction-type-div{
+        height:calc(100% - 40px);
+    }
+    .kx-barrage-send-div > button{
+        width:60px;
+    }
+    .kx-barrage-send-div{
+        position: fixed;
+        bottom:0;
+        left:0;
+    }
+    .kx-barrage-send-div > input{
+        width:calc(100% - 60px - 10px);
+    }
+    .kx-barrage-send-div{
+        border-bottom:1px #ddd solid;
+    }
+    .barrage_box{
+        display: none;
     }
 }

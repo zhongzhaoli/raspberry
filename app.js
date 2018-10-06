@@ -9,9 +9,8 @@ const io = require('socket.io')(http);
 let online_user = [];
 //用户socket储存
 var SocketObj = {};
-var SocketArray = [];
 //禁言列表
-let excuse_user = ['10.1.53.157'];
+let excuse_user = [];
 
 var arr = {
     "login": "用户登录的广播",
@@ -43,11 +42,18 @@ io.on('connection', (socket) => {
     }
     //存储user的socket
     SocketObj[socket.id] = socket;
-    SocketArray.push(socket.id);
     //登录广播
     io.emit('login',ip);
     //用户列表广播
     io.emit('online_list',online_user);
+    //页面刷新结束后获取在线人数和在线列表
+    socket.on('refurbish', function(){
+        var a = {
+            'user_list': online_user,
+            'user_num': online_user.length
+        }
+        SocketObj[socket.id].emit("refurbish",a)
+    })
     //弹幕发送
     socket.on('barrage',function(text){
         if(excuse_user.indexOf(socket.id) >= 0){
@@ -57,7 +63,7 @@ io.on('connection', (socket) => {
                 "msg": text,
                 "user": socket.id
             }
-            io.emit('barrage', data);
+            io.sockets.emit('barrage', data);
         }
     })
     //离开
