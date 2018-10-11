@@ -1,4 +1,4 @@
-const socket = io.connect('http://192.168.0.132:1111');
+const socket = io.connect('http://10.1.53.149:1111');
 $(function(){
     //Vue 框架
     var app = new Vue({

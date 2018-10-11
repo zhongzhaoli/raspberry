@@ -36,10 +36,10 @@ function step(timestamp) {
     window.requestAnimationFrame(step);
 }
 function video_roll(text){
-    const video_height = $(".barrage_box")[0].offsetHeight;
-    const video_width = $(".barrage_box")[0].offsetWidth;
-    let barrage_top = parseInt(Math.random() * video_height);
-    let a = $("<div class='barrage_video'>" + text + "</div>").appendTo($(".barrage_box"));
+    const video_height = $(".kx-video")[0].offsetHeight;
+    const video_width = $(".kx-video")[0].offsetWidth;
+    let barrage_top = parseInt(Math.random() * (video_height - 30));
+    let a = $("<div class='barrage_video'>" + text + "</div>").appendTo($(".kx-video"));
     a[0].style.top = barrage_top + "px";
     a[0].style.left = video_width + "px";
 }

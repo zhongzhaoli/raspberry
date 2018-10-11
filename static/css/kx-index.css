@@ -44,16 +44,6 @@ body,html{
 .kx-message-text > div{
     padding:3px 0;
 }
-.barrage_box{
-    font-size: 21px;
-    width:100%;
-    height:calc(100% - 30px);
-    position: absolute;
-    top:0;
-    left:0;
-    z-index: 1;
-    overflow: hidden;
-}
 .send_div{
     display: flex;
     justify-content: center;
@@ -312,8 +302,5 @@ body,html{
     }
     .kx-barrage-send-div{
         border-bottom:1px #ddd solid;
-    }
-    .barrage_box{
-        display: none;
     }
 }
