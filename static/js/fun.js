@@ -1,4 +1,5 @@
 $(function(){
+    start_flash();
     max_800_resize();
     $(".kx-interaction-type-list > div").on("click", function(){
         $(".kx-interaction-type-list > div").map((val,item) => {
@@ -22,6 +23,9 @@ $(function(){
 $(window).resize(function(){
     max_800_resize();
 })
+function start_flash(){
+    $("#FlashID")[0].click();
+}
 function step(timestamp) {
     //滚动
     $(".barrage_video").map((val,item) => {
