@@ -24,13 +24,6 @@
     <!--</script>-->
 </head>
 <body>
-<object class="djs" id="FlashID" classid="clsid:D27CDB6E-AE6D-11CF-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,40,0" width="88" height="88" border="0">
-    <param name="movie" value="images/daojishi.swf">
-    <param name="quality" value="High">
-    <param name="loop" value="false">
-    <param name="wmode" value="transparent" />
-    <embed id="FlashID" wmode="transparent" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" name="obj1" width="88" height="88" quality="High" loop="false">
-</object>
 <param name="wmode" value="transparent" />
 </div>
     <div class="kx-nav">
@@ -63,13 +56,20 @@
                 </div>
                 <div class="kx-video-message-right"></div>
             </div>
-            <div class="kx-video">
-                <div class="kx-video-div">
-                    <video v-show="flash" id="streamContainer" class="video-js vjs-default-skin vjs-16-9" controls autoplay="autoplay" style="width:100%;" preload="auto" data-setup='{ "techorder" : ["flash", "html5"] }'>
-                        <source src="rtmp://10.1.53.26/live/pbh" type='rtmp/mp4'>
-                    </video>
+            <object class="djs" id="FlashID" classid="clsid:D27CDB6E-AE6D-11CF-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,40,0" width="100%" height="88" border="0">
+                <param name="movie" value="images/daojishi.swf">
+                <param name="quality" value="High">
+                <param name="loop" value="false">
+                <param name="wmode" value="transparent" />
+                <embed id="FlashID" wmode="transparent" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" name="obj1" width="100%" height="88" quality="High" loop="false">
+            </object>                
+                <div class="kx-video">
+                    <div class="kx-video-div">
+                        <video v-show="flash" id="streamContainer" class="video-js vjs-default-skin vjs-16-9" controls autoplay="autoplay" style="width:100%;" preload="auto" data-setup='{ "techorder" : ["flash", "html5"] }'>
+                            <source src="rtmp://10.1.53.26/live/pbh" type='rtmp/mp4'>
+                        </video>
+                    </div>
                 </div>
-            </div>
         </div>
         <div class="kx-main-interaction">
             <div class="kx-interaction-type-list">

@@ -21,6 +21,14 @@ $(function(){
     if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
         flv_fun.show();        
     }
+    if(navigator.plugins['Shockwave Flash']){
+        //开启了flash
+        $(".kx-video").show();
+        $(".djs").hide();
+    }else{
+        //关闭了flash
+        $(".kx-video").hide();        
+    }
 })
 $(window).resize(function(){
     max_800_resize();
