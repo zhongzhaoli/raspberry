@@ -19,7 +19,8 @@ $(function(){
         }
     })
     if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
-        flv_fun.show();        
+        flv_fun.show();
+        $(".djs").hide();     
     }
     if(navigator.plugins['Shockwave Flash']){
         //开启了flash
