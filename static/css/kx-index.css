@@ -234,8 +234,12 @@ body,html{
     padding:20px;
     overflow: auto;
 }
-.djs{
-    /*display: none;*/
+.mainContainer{
+    width:100%;
+}
+.mainContainer > video{
+    width:100%;
+    height:auto;
 }
 @media screen and (max-width: 1300px){
     .kx-main-video{

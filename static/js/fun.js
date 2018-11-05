@@ -1,5 +1,4 @@
 $(function(){
-    start_flash();
     max_800_resize();
     $(".kx-interaction-type-list > div").on("click", function(){
         $(".kx-interaction-type-list > div").map((val,item) => {
@@ -19,13 +18,13 @@ $(function(){
             send_barrage();
         }
     })
+    if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+        flv_fun.show();        
+    }
 })
 $(window).resize(function(){
     max_800_resize();
 })
-function start_flash(){
-    $("#FlashID")[0].click();
-}
 function step(timestamp) {
     //滚动
     $(".barrage_video").map((val,item) => {
@@ -65,11 +64,19 @@ function send_barrage(){
 function max_800_resize(){
     var window_width = $("body")[0].offsetWidth;
     var window_height = $("body")[0].offsetHeight;
+
     if(window_width <= 800){
         let video_height = $(".kx-video")[0].offsetHeight;
         $(".kx-main-interaction")[0].style.height = window_height - video_height - 60 - 40 + "px";
+        flv_fun.show();
     }
     else{
         $(".kx-main-interaction")[0].style.height = "auto";
+        if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+            flv_fun.show();        
+        }
+        else{
+            flv_fun.hide();        
+        }
     }
 }

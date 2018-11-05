@@ -18,7 +18,7 @@ var arr = {
 }
 
 //静态资源目录
-ex.use(express.static(path.join(__dirname, 'static')));
+ex.use(express.static(path.join(__dirname, '/')));
 
 //服务器创建
 http.listen(1111,() =>  {
