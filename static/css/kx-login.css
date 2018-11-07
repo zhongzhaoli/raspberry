@@ -1,0 +1,85 @@
+body,html{
+    margin:0;
+    padding:0;
+    width:100%;
+    height:100%;
+    overflow: hidden;
+}
+.login_bg{
+    width:100%;
+    height:100%;
+    background-image: url("../../static/images/login_bg.jpg");
+    background-position: center center;
+    background-size: cover;
+    -webkit-filter: blur(8px);
+    -moz-filter: blur(8px);
+    -ms-filter: blur(8px);
+    -o-filter: blur(8px);
+    filter: blur(8px);
+    transform: scale(1.2);
+}
+.center_text{
+    position: absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.center_user_text .title{
+    font-size:40px;
+    color:white;
+    font-weight: lighter;
+}
+.input_div{
+    border-radius: 50px;
+    height: 45px;
+    width:250px;
+    border: 1px solid #fff;
+    background: 0 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.name_input{
+    width: calc(100% - 40px);
+    height:100%;
+    border:none;
+    background: 0 0;
+    color: #fff;
+    outline: none;
+    font-size:15px;
+    border-radius: 50px 0 0 50px;
+    padding:0 20px;
+    box-sizing: border-box;
+    font-weight: lighter;
+}
+.to_div{
+    width:40px;
+    height:100%;
+    border-radius: 0 50px 50px 0;
+    border-left:1px #fff solid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color:white;
+    cursor: pointer;
+    transition: all .5s;
+}
+.to_div:hover{
+    background:#2196f3;
+}
+input::-webkit-input-placeholder{
+    color:#fff;
+}
+input::-moz-placeholder{   /* Mozilla Firefox 19+ */
+    color:#fff;
+}
+input:-moz-placeholder{    /* Mozilla Firefox 4 to 18 */
+    color:#fff;
+}
+input:-ms-input-placeholder{  /* Internet Explorer 10-11 */
+    color:#fff;
+}

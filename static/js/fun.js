@@ -11,13 +11,6 @@ $(function(){
         let type = $(this).data("type");
         $(".type" + type).removeClass("kx-dis-none");
     })
-    $(window).on("keydown",function(e){
-        var key = e.keyCode;
-        //回车发送
-        if(key == 13){
-            send_barrage();
-        }
-    })
     if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
         flv_fun.show();
         $(".djs").hide();     
@@ -54,21 +47,6 @@ function video_roll(text){
     let a = $("<div class='barrage_video'>" + text + "</div>").appendTo($(".kx-video"));
     a[0].style.top = barrage_top + "px";
     a[0].style.left = video_width + "px";
-}
-function send_barrage(){
-    let text = $("#text").val().trim();
-    if(text.length >= 20){
-        alert("弹幕内容不能超过20个字");
-    }
-    else {
-        if (text != "") {
-            socket.emit("barrage", text);
-        }
-        else {
-            alert("弹幕内容不能为空");
-        }
-    }
-    $("#text").val("");
 }
 function max_800_resize(){
     var window_width = $("body")[0].offsetWidth;

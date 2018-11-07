@@ -8,9 +8,11 @@ const io = require('socket.io')(http);
 //在线列表
 let online_user = [];
 //用户socket储存
-var SocketObj = {};
+let SocketObj = {};
 //禁言列表
 let excuse_user = [];
+//发言频率数组
+let user_send_frequency = []; 
 
 var arr = {
     "login": "用户登录的广播",
@@ -27,6 +29,10 @@ http.listen(1111,() =>  {
 //服务器与网站挂钩
 ex.get('/', (req, res) => {
     res.sendfile(__dirname + '/index.html');
+});
+//服务器与网站挂钩
+ex.get('/live', (req, res) => {
+    res.sendfile(__dirname + '/live.html');
 });
 
 //连接1
@@ -51,21 +57,18 @@ io.on('connection', (socket) => {
         var a = {
             'user_list': online_user,
             'user_num': online_user.length
-        }
+        };
         SocketObj[socket.id].emit("refurbish",a)
-    })
-    //弹幕发送
-    socket.on('barrage',function(text){
-        if(excuse_user.indexOf(socket.id) >= 0){
-            SocketObj[socket.id].emit('message', "你已经禁言了");//news用于发送消息给某个用户
-        }else {
-            let data = {
-                "msg": text,
-                "user": socket.id
-            }
-            io.sockets.emit('barrage', data);
+    });
+    //name登录
+    socket.on("login_name",function(name){
+        if(name.length > 10){
+            SocketObj[socket.id].emit("login_name_max","error");
         }
-    })
+        else{
+            socket.name = name;
+        }
+    });
     //离开
     socket.on('disconnect', function(){
         //用户列表删除

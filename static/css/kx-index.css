@@ -141,7 +141,7 @@ body,html{
     align-items: center;
 }
 .kx-interaction-type-list > div{
-    width: 33.3333333333%;
+    width: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -240,6 +240,11 @@ body,html{
 .mainContainer > video{
     width:100%;
     height:auto;
+}
+.user_name{
+    padding-left:10px;
+    font-size:15px;
+    color:#fff;
 }
 @media screen and (max-width: 1300px){
     .kx-main-video{

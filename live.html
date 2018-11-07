@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>首页</title>
+    <!-- 因为app.js设置了静态目录static 所以路径不是./static/js/xxx.js -->
+    <script src = "./static/js/jquery.min.js"></script>
+    <script src="./static/js/cookie.js"></script>
+    <script src = "./static/js/socket.io.js"></script>
+    <script src = "./static/js/index.js"></script>
+    <script src="./static/js/fun.js"></script>
+    <script src = "./static/js/vue.js"></script>
+    <script src="./static/js/video.min.js"></script>
+    <script src="./static/js/flv.min.js"></script>
+    <link rel="stylesheet" href="./static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./static/css/kx-index.css">
+    <link rel="stylesheet" href="./static/css/kx-nav.css">
+    <link rel="stylesheet" href="./static/css/kx-footer.css">
+    <link href="./static/css/video-js.min.css" rel="stylesheet">
+    <!--<script type="text/javascript">-->
+        <!--videojs.options.flash.swf = "./js/video-js.swf";-->
+    <!--</script>-->
+</head>
+<body>
+<param name="wmode" value="transparent" />
+    <div class="kx-nav">
+        <div class="kx-nav-left">
+            <a class="kx-nav-logo" href="#">
+                <span class="icon-boNiLQhu6"></span>
+            </a>
+            <p class="kx-nav-title">流媒体直播</p>
+        </div>
+        <div class="kx-nav-right">
+            <div class="kx-nav-user">
+                <div class="kx-user-img-div">
+                    <img src="./static/images/user.jpg" alt="">
+                </div>
+            </div>
+            <span class="user_name"></span>
+        </div>
+    </div>
+    <div class="kx-main row">
+        <div class="kx-main-video">
+            <div class="kx-video-message">
+                <div class="kx-video-message-left">
+                    <div class="kx-message-img-div">
+                        <img src="./static/images/user.jpg" alt="">
+                    </div>
+                    <div class="kx-message-text">
+                        <div class="kx-message-title">青铜修炼手册</div>
+                        <div>主讲老师：钟兆立</div>
+                        <div id="user_list_num">在线人数：{{ length }}</div>
+                    </div>
+                </div>
+                <div class="kx-video-message-right"></div>
+            </div>
+            <object class="djs" id="FlashID" classid="clsid:D27CDB6E-AE6D-11CF-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,40,0" width="100%" height="88" border="0">
+                <param name="movie" value="images/daojishi.swf">
+                <param name="quality" value="High">
+                <param name="loop" value="false">
+                <param name="wmode" value="transparent" />
+                <embed id="FlashID" wmode="transparent" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" name="obj1" width="100%" height="88" quality="High" loop="false">
+            </object>                
+                <div class="kx-video">
+                    <div class="kx-video-div">
+                        <video v-show="flash" id="streamContainer" class="video-js vjs-default-skin vjs-16-9" controls autoplay="autoplay" style="width:100%;" preload="auto" data-setup='{ "techorder" : ["flash", "html5"] }'>
+                            <source src="rtmp://10.1.53.26/live/pbh" type='rtmp/mp4'>
+                        </video>
+                    </div>
+                </div>
+        </div>
+        <div class="kx-main-interaction">
+            <div class="kx-interaction-type-list">
+                <div class="active" data-type="2">功能区</div>
+                <div data-type="3">在线列表</div>
+            </div>
+            <div class="kx-interaction-type-div type2"></div>
+            <div class="kx-interaction-type-div type3 kx-dis-none">
+                <div id="user_list">
+                    <div class="alert alert-primary kx-alert" role="alert" v-for="i in user_list">
+                    {{ i }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <nav class="navbar navbar-default navbar-fixed-bottom kx-footer">
+        <div class="container">
+            <div class="footer">© 2018 15913.com
+                <ul class="f-menu">
+                    <li><a href="#">首页</a></li>
+                    <li><a href="#">隐私权</a></li>
+                    <li><a href="#">服务条款</a></li>
+                    <li><a href="#">发送反馈</a></li>
+                    <li><a href="#">常见问题</a></li>
+                    <li><a href="#">帮助</a></li>
+                    <li><a href="#">联系我们</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</body>
+
+</html>
