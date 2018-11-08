@@ -246,6 +246,23 @@ body,html{
     font-size:15px;
     color:#fff;
 }
+.type2 > div{
+    width:33.3333333333333%;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    padding:20px;
+    float:left;
+    cursor: pointer;
+    transition: all .2s;
+}
+.type2 > div:hover{
+    background:#eaeaea;
+}
+.type2 > div > img{
+    width:50px;
+}
 @media screen and (max-width: 1300px){
     .kx-main-video{
         width:72%;

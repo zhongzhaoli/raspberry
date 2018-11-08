@@ -23,7 +23,9 @@ $(function(){
     socket_get_fun.main(app,app3);
     //页面刷新获取用户列表和人数
     socket.emit("refurbish","");
-    window.requestAnimationFrame(step);
+    $(".handup").on("click",function(){
+        socket.emit("handup","");
+    });
 });
 //flv对象
 var flv_fun = {
@@ -48,7 +50,7 @@ var flv_fun = {
     },
     hide: function(){
         $(".mainContainer").remove();
-        $(".kx-video").show();        
+        $(".kx-video").show();
     }
 };
 //主接收对象
@@ -72,6 +74,9 @@ var socket_get_fun = {
             alert("名字过长");
             delCookie("name");
             window.location.href = "/";
+        })
+        socket.on("handup", (data) => {
+            alert(data + "举手了");
         })
     }
 }

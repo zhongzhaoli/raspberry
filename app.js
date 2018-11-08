@@ -9,10 +9,8 @@ const io = require('socket.io')(http);
 let online_user = [];
 //用户socket储存
 let SocketObj = {};
-//禁言列表
-let excuse_user = [];
-//发言频率数组
-let user_send_frequency = []; 
+//老师ip
+let teacher;
 
 var arr = {
     "login": "用户登录的广播",
@@ -29,6 +27,10 @@ http.listen(1111,() =>  {
 //服务器与网站挂钩
 ex.get('/', (req, res) => {
     res.sendfile(__dirname + '/index.html');
+});
+//服务器与网站挂钩
+ex.get('/teacher', (req, res) => {
+    res.sendfile(__dirname + '/teacher.html');
 });
 //服务器与网站挂钩
 ex.get('/live', (req, res) => {
@@ -69,6 +71,25 @@ io.on('connection', (socket) => {
             socket.name = name;
         }
     });
+    //teacher
+    socket.on("teacher_login",function(password){
+        if(password === "teacher123456"){
+            if(!teacher) {
+                teacher = socket.id;
+            }
+            else{
+                SocketObj[socket.id].emit("teacher_login","已有老师在上课");
+            }
+            SocketObj[socket.id].emit("teacher_login","ok");
+        }
+        else{
+            SocketObj[socket.id].emit("teacher_login","密码错误");
+        }
+    });
+    //举手
+    socket.on("handup",function(){
+        SocketObj[teacher].emit("handup",socket.id);
+    })
     //离开
     socket.on('disconnect', function(){
         //用户列表删除
