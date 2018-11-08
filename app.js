@@ -10,7 +10,9 @@ let online_user = [];
 //用户socket储存
 let SocketObj = {};
 //老师ip
-let teacher;
+let teacher = "";
+//上个老师ip
+let last_teacher = "";
 
 var arr = {
     "login": "用户登录的广播",
@@ -44,6 +46,11 @@ io.on('connection', (socket) => {
     //打印IP
     console.log('访问者IP：' + ip);
     socket.id = ip;
+    socket.url = socket.handshake.headers.referer.split("1111/")[1];
+    if(last_teacher === socket.id && socket.url === "live"){
+        teacher = socket.id;
+        last_teacher = socket.id;
+    }
     //访问者不在在线列表的话就加入在线列表
     if(!(online_user.indexOf(ip) >= 0)){
         online_user.push(ip);
@@ -62,25 +69,17 @@ io.on('connection', (socket) => {
         };
         SocketObj[socket.id].emit("refurbish",a)
     });
-    //name登录
-    socket.on("login_name",function(name){
-        if(name.length > 10){
-            SocketObj[socket.id].emit("login_name_max","error");
-        }
-        else{
-            socket.name = name;
-        }
-    });
     //teacher
     socket.on("teacher_login",function(password){
         if(password === "teacher123456"){
             if(!teacher) {
                 teacher = socket.id;
+                last_teacher = socket.id;
+                SocketObj[socket.id].emit("teacher_login","ok");
             }
             else{
-                SocketObj[socket.id].emit("teacher_login","已有老师在上课");
+                SocketObj[socket.id].emit("teacher_login","已有老师在上课" + teacher);
             }
-            SocketObj[socket.id].emit("teacher_login","ok");
         }
         else{
             SocketObj[socket.id].emit("teacher_login","密码错误");
@@ -98,6 +97,10 @@ io.on('connection', (socket) => {
         console.log('离开者：' + socket.id);
         //用户列表广播
         io.emit('online_list',online_user);
+        //如果是老师，删除老师
+        if(socket.id === teacher){
+            teacher = "";
+        }
     });
 })
 

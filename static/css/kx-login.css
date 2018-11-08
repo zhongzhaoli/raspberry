@@ -28,6 +28,9 @@ body,html{
     justify-content: center;
     align-items: center;
 }
+.center_user_text{
+    text-align: center;
+}
 .center_user_text .title{
     font-size:40px;
     color:white;
@@ -55,6 +58,12 @@ body,html{
     padding:0 20px;
     box-sizing: border-box;
     font-weight: lighter;
+}
+.teacher_login{
+    font-size:13px;
+    color:white;
+    text-decoration: none;
+    text-align: center;
 }
 .to_div{
     width:40px;

@@ -5,7 +5,6 @@ $(function(){
     }
     else{
         $(".user_name").html(getCookie("name"));
-        socket.emit("login_name",getCookie("name"));
     }
     //Vue 框架
     var app = new Vue({
