@@ -65,9 +65,15 @@ io.on('connection', (socket) => {
     socket.on('refurbish', function(){
         var a = {
             'user_list': online_user,
-            'user_num': online_user.length
+            'user_num': online_user.length,
         };
         SocketObj[socket.id].emit("refurbish",a)
+    });
+    //学生名字登录
+    socket.on("student_login",function(name){
+        let num = online_user.indexOf(socket.id);
+        online_user[num] = name + " (" + socket.id + ")";
+        socket.name = name;
     });
     //teacher
     socket.on("teacher_login",function(password){
@@ -92,7 +98,7 @@ io.on('connection', (socket) => {
     //离开
     socket.on('disconnect', function(){
         //用户列表删除
-        online_user.remove(socket.id);
+        online_user.remove(socket.name + " (" + socket.id + ")");
         //打印离开者
         console.log('离开者：' + socket.id);
         //用户列表广播
