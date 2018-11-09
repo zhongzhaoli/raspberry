@@ -4,8 +4,8 @@ $(function(){
         window.location.href = "/";
     }
     else{
-        $(".user_name").html(getCookie("name"));
-        socket.emit("student_login",getCookie("name"))
+        $(".user_name").html(localStorage.name);
+        socket.emit("student_login",localStorage.name);
     }
     //Vue 框架
     var app = new Vue({

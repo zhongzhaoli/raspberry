@@ -14,7 +14,7 @@ $(function(){
                 alert("名字太长了");
             }
             else {
-                setCookie("name", name);
+                localStorage.name = name;
                 window.location.href = "/live";
             }
         }
