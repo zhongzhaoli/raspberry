@@ -1,6 +1,6 @@
 const socket = io.connect('http://10.1.53.149:1111');
 $(function(){
-    if(!getCookie("name")){
+    if(!localStorage.name){
         window.location.href = "/";
     }
     else{
