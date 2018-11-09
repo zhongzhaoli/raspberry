@@ -93,7 +93,7 @@ io.on('connection', (socket) => {
     });
     //举手
     socket.on("handup",function(){
-        SocketObj[teacher].emit("handup",socket.id);
+        SocketObj[teacher].emit("handup",socket.name);
     })
     //离开
     socket.on('disconnect', function(){
