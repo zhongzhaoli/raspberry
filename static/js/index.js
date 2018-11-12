@@ -1,30 +1,37 @@
-const socket = io.connect('http://10.1.53.149:1111');
+var socket;
 $(function(){
-    if(!localStorage.name){
-        window.location.href = "/";
-    }
-    else{
-        $(".user_name").html(localStorage.name);
-        socket.emit("student_login",localStorage.name);
-    }
-    //Vue 框架
-    var app = new Vue({
-        el: '#user_list',
-        data: {
-            user_list: []
+    $.ajax({
+        url: "/static/conf/ip.txt",
+        type: "get",
+        success:function(response){
+            socket = io.connect(response + ":1111");
+            if(!localStorage.name){
+                window.location.href = "/";
+            }
+            else{
+                $(".user_name").html(localStorage.name);
+                socket.emit("student_login",localStorage.name);
+            }
+            //Vue 框架
+            var app = new Vue({
+                el: '#user_list',
+                data: {
+                    user_list: []
+                }
+            });
+            var app3 = new Vue({
+                el: '#user_list_num',
+                data: {
+                    length: ""
+                }
+            });
+            socket_get_fun.main(app,app3);
+            //页面刷新获取用户列表和人数
+            socket.emit("refurbish","");
+            $(".handup").on("click",function(){
+                socket.emit("handup","");
+            });
         }
-    });
-    var app3 = new Vue({
-        el: '#user_list_num',
-        data: {
-            length: ""
-        }
-    });
-    socket_get_fun.main(app,app3);
-    //页面刷新获取用户列表和人数
-    socket.emit("refurbish","");
-    $(".handup").on("click",function(){
-        socket.emit("handup","");
     });
 });
 //flv对象
